@@ -41,9 +41,7 @@ def main(page: ft.Page):
         content_padding=ft.padding.only(left=8, bottom=8),
         on_submit=display_image,
     )
-    result_image = ft.Container(
-        alignment=ft.alignment.center,
-    )
+    result_image = ft.Container(alignment=ft.alignment.center, margin=ft.margin.all(0))
     page.add(
         ft.Container(
             ft.Column(
@@ -102,9 +100,10 @@ def main(page: ft.Page):
                             result_image,
                             structure_name,
                         ],
-                        scroll="always",
+                        spacing=0,
                     ),
                 ],
+                scroll=ft.ScrollMode.ALWAYS,
             ),
             expand=True,
             # alignment=alignment.top_right,
