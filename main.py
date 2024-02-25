@@ -4,7 +4,10 @@ import flet as ft
 def main(page: ft.Page):
     page.bgcolor = "white"
     page.theme_mode = "light"
-    # page.vertical_alignment = MainAxisAlignment.CENTER
+
+    def hovered(e):
+        e.control.opacity = 0.7 if e.control.opacity == 1.0 else 1.0
+        e.control.update()
 
     def display_image(e):
 
@@ -19,11 +22,18 @@ def main(page: ft.Page):
             width=250,
             height=250,
         )
+
+        structure_name.content.value = mol_name.value
+        structure_name.content.update()
         mol_name.value = ""
         mol_name.update()
         result_image.update()
 
+    structure_name = ft.Container(
+        ft.Text(size=15, weight=ft.FontWeight.W_500), alignment=ft.alignment.center
+    )
     mol_name = ft.TextField(
+        hint_text="Substance name...",
         width=300,
         height=40,
         adaptive=True,
@@ -38,19 +48,44 @@ def main(page: ft.Page):
         ft.Container(
             ft.Column(
                 [
-                    ft.Text("ORGANO", size=35, weight=ft.FontWeight.BOLD),
+                    ft.Container(
+                        ft.Column(
+                            [
+                                ft.Row(
+                                    [
+                                        ft.Image(src="logo.png", width=100, height=100),
+                                        ft.Text(
+                                            "ORGANO", size=35, weight=ft.FontWeight.BOLD
+                                        ),
+                                    ],
+                                    spacing=0,
+                                ),
+                                ft.Text(
+                                    "Convert IUPAC name to organic structure",
+                                    size=13,
+                                    opacity=0.7,
+                                ),
+                            ],
+                            spacing=0,
+                        ),
+                        padding=ft.padding.only(bottom=10),
+                    ),
                     ft.Column(
                         [
                             ft.Row(
                                 [
                                     mol_name,
                                     ft.Container(
-                                        ft.Text("Submit", ft.FontWeight.BOLD),
-                                        bgcolor="green",
+                                        ft.Text(
+                                            "Submit", size=15, weight=ft.FontWeight.BOLD
+                                        ),
+                                        opacity=1.0,
+                                        bgcolor="#546ee5",
                                         width=60,
                                         height=40,
                                         border_radius=5,
                                         alignment=ft.alignment.center,
+                                        on_hover=hovered,
                                         on_click=display_image,
                                     ),
                                 ],
@@ -65,15 +100,19 @@ def main(page: ft.Page):
                                 alignment=ft.alignment.center,
                             ),
                             result_image,
+                            structure_name,
                         ],
+                        scroll="always",
                     ),
                 ],
             ),
             expand=True,
             # alignment=alignment.top_right,
-        )
+        ),
+        ft.Divider(color="#546ee5", height=8),
+        ft.Text("© 2024 by Benit MULINDWA", size=12),
     )
 
 
 if __name__ == "__main__":
-    ft.app(target=main)
+    ft.app(target=main, assets_dir="assets")
