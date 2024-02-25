@@ -11,8 +11,9 @@ def main(page: ft.Page):
         result_image.content = ft.Image(
             src=f"https://opsin.ch.cam.ac.uk/opsin/{mol_name.value}.png",
             error_content=ft.Text(
-                "There's an error with the name you provided",
+                "There was an error with the IUPAC name you provided",
                 size=25,
+                color="red",
                 weight=ft.FontWeight.BOLD,
             ),
             width=250,
@@ -26,15 +27,11 @@ def main(page: ft.Page):
         width=300,
         height=40,
         adaptive=True,
+        expand=True,
         content_padding=ft.padding.only(left=8, bottom=8),
         on_submit=display_image,
     )
     result_image = ft.Container(
-        ft.Text(
-            "Your molecule structure will be displayed here",
-            size=25,
-            weight=ft.FontWeight.BOLD,
-        ),
         alignment=ft.alignment.center,
     )
     page.add(
@@ -58,6 +55,14 @@ def main(page: ft.Page):
                                     ),
                                 ],
                                 alignment=ft.MainAxisAlignment.CENTER,
+                            ),
+                            ft.Container(
+                                ft.Text(
+                                    "The molecule structure will be displayed down here: ",
+                                    size=25,
+                                    weight=ft.FontWeight.BOLD,
+                                ),
+                                alignment=ft.alignment.center,
                             ),
                             result_image,
                         ],
