@@ -1,5 +1,5 @@
 import flet as ft
-
+from datetime import datetime
 
 def main(page: ft.Page):
     page.bgcolor = "white"
@@ -30,7 +30,7 @@ def main(page: ft.Page):
         result_image.update()
 
     structure_name = ft.Container(
-        ft.Text(size=15, weight=ft.FontWeight.W_500), alignment=ft.alignment.center
+        ft.Text(size=15, weight=ft.FontWeight.W_500, selectable=True), alignment=ft.alignment.center
     )
     mol_name = ft.TextField(
         hint_text="Substance name...",
@@ -109,7 +109,7 @@ def main(page: ft.Page):
             # alignment=alignment.top_right,
         ),
         ft.Divider(color="#546ee5", height=8),
-        ft.Text("© 2024 by Benit MULINDWA", size=12),
+        ft.Text(f"© {datetime.now().date().strftime("%Y")} by Benit MULINDWA", opacity=0.7,size=12),
     )
 
 
