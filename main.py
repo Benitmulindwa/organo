@@ -1,6 +1,8 @@
 import flet as ft
 from datetime import datetime
 
+
+
 def main(page: ft.Page):
     page.bgcolor = "white"
     page.theme_mode = "light"
@@ -10,7 +12,8 @@ def main(page: ft.Page):
         e.control.update()
 
     def display_image(e):
-
+        result_image.content=ft.Text("Processing...")
+        result_image.update()
         result_image.content = ft.Image(
             src=f"https://opsin.ch.cam.ac.uk/opsin/{mol_name.value}.png",
             error_content=ft.Text(
@@ -19,8 +22,8 @@ def main(page: ft.Page):
                 color="red",
                 weight=ft.FontWeight.BOLD,
             ),
-            width=250,
-            height=250,
+            width=200,
+            height=200,
         )
 
         structure_name.content.value = mol_name.value
@@ -94,6 +97,7 @@ def main(page: ft.Page):
                                     weight=ft.FontWeight.BOLD,
                                 ),
                                 alignment=ft.alignment.center,
+                                margin=ft.margin.only(top=5)
                             ),
                             result_image,
                             structure_name,
