@@ -25,8 +25,6 @@ def main(page: ft.Page):
 
         structure_name.content.value = mol_name.value
         structure_name.content.update()
-        mol_name.value = ""
-        mol_name.update()
         result_image.update()
 
     structure_name = ft.Container(
