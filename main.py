@@ -2,7 +2,6 @@ import flet as ft
 from datetime import datetime
 
 
-
 def main(page: ft.Page):
     page.bgcolor = "white"
     page.theme_mode = "light"
