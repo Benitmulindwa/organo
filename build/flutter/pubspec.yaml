@@ -1,0 +1,69 @@
+dependencies:
+  cupertino_icons: ^1.0.6
+  flutter:
+    sdk: flutter
+  package_info_plus: ^8.0.2
+  path: ^1.9.0
+  path_provider: ^2.1.4
+  serious_python: 0.8.7
+  url_strategy: ^0.2.0
+  window_manager: ^0.4.3
+dependency_overrides:
+  flet: 0.26.0
+  wakelock_plus: ^1.2.10
+  web: ^1.0.0
+  webview_flutter_android: ^4.0.0
+  window_manager: ^0.4.3
+description: ''
+dev_dependencies:
+  flutter_launcher_icons: ^0.14.1
+  flutter_lints: ^2.0.0
+  flutter_native_splash: ^2.4.1
+environment:
+  sdk: '>=3.1.5 <4.0.0'
+flutter:
+  assets:
+  - app/app.zip
+  - app/app.zip.hash
+  uses-material-design: true
+flutter_launcher_icons:
+  adaptive_icon_background: '#ffffff'
+  adaptive_icon_foreground: images/icon.png
+  android: true
+  image_path: images/icon.png
+  image_path_android: images/icon.png
+  image_path_ios: images/icon.png
+  ios: true
+  macos:
+    generate: true
+    image_path: images/icon.png
+  remove_alpha_ios: true
+  web:
+    generate: true
+    image_path: images/icon.png
+  windows:
+    generate: true
+    icon_size: 256
+    image_path: images/icon.png
+flutter_native_splash:
+  android: true
+  android_12:
+    color: '#ffffff'
+    color_dark: '#333333'
+    image: images/splash.png
+    image_dark: images/splash.png
+  color: '#ffffff'
+  color_dark: '#222222'
+  image: images/splash.png
+  image_android: images/splash.png
+  image_dark: images/splash.png
+  image_dark_android: images/splash.png
+  image_dark_ios: images/splash.png
+  image_dark_web: images/splash.png
+  image_ios: images/splash.png
+  image_web: images/splash.png
+  ios: true
+  web: true
+name: organo
+publish_to: none
+version: 1.0.0+1

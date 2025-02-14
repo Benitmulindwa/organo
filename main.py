@@ -8,7 +8,7 @@ def main(page: ft.Page):
     page.theme_mode = "light"
 
     def flip_image(e):
-        e.control.rotate += math.pi / 2
+        e.control.rotate += math.pi / 4
         e.control.update()
 
     def hovered(e):
