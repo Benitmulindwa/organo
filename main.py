@@ -1,17 +1,22 @@
 import flet as ft
 from datetime import datetime
+import math
 
 
 def main(page: ft.Page):
     page.bgcolor = "white"
     page.theme_mode = "light"
 
+    def flip_image(e):
+        e.control.rotate += math.pi / 2
+        e.control.update()
+
     def hovered(e):
         e.control.opacity = 0.7 if e.control.opacity == 1.0 else 1.0
         e.control.update()
 
     def display_image(e):
-        result_image.content=ft.Text("Processing...")
+        result_image.content = ft.Column([ft.Text("Processing..."), ft.ProgressRing()])
         result_image.update()
         result_image.content = ft.Image(
             src=f"https://opsin.ch.cam.ac.uk/opsin/{mol_name.value}.png",
@@ -30,7 +35,8 @@ def main(page: ft.Page):
         result_image.update()
 
     structure_name = ft.Container(
-        ft.Text(size=15, weight=ft.FontWeight.W_500, selectable=True), alignment=ft.alignment.center
+        ft.Text(size=15, weight=ft.FontWeight.W_500, selectable=True),
+        alignment=ft.alignment.center,
     )
     mol_name = ft.TextField(
         hint_text="Substance name...",
@@ -41,7 +47,12 @@ def main(page: ft.Page):
         content_padding=ft.padding.only(left=8, bottom=8),
         on_submit=display_image,
     )
-    result_image = ft.Container(alignment=ft.alignment.center, margin=ft.margin.all(0))
+    result_image = ft.Container(
+        on_click=flip_image,
+        alignment=ft.alignment.center,
+        margin=ft.margin.all(0),
+        rotate=0,
+    )
     page.add(
         ft.Container(
             ft.Column(
@@ -96,7 +107,7 @@ def main(page: ft.Page):
                                     weight=ft.FontWeight.BOLD,
                                 ),
                                 alignment=ft.alignment.center,
-                                margin=ft.margin.only(top=5)
+                                margin=ft.margin.only(top=5),
                             ),
                             result_image,
                             structure_name,
@@ -110,7 +121,11 @@ def main(page: ft.Page):
             # alignment=alignment.top_right,
         ),
         ft.Divider(color="#546ee5", height=8),
-        ft.Text(f"© {datetime.now().date().strftime("%Y")} by Benit MULINDWA", opacity=0.7,size=12),
+        ft.Text(
+            f"© {datetime.now().date().strftime("%Y")} by Benit MULINDWA",
+            opacity=0.7,
+            size=12,
+        ),
     )
 
 
